@@ -4,6 +4,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class SimpleSorter implements project.remote.Sorter {
+	
+	private static int instances = 0;
+	
+	private String name;
+	
+	public SimpleSorter() {
+		SimpleSorter.instances++;
+		this.name = "SimpleSorter" + SimpleSorter.instances;
+	}
 
 	@Override
 	public List<String> sort(List<String> list) {
@@ -24,7 +33,7 @@ public class SimpleSorter implements project.remote.Sorter {
 
 	@Override
 	public String toString() {
-		return "SimpleSorter " + Thread.currentThread();
+		return this.name + " " + Thread.currentThread();
 	}
 
 }

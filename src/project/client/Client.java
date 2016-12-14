@@ -21,7 +21,7 @@ public class Client {
 		    System.out.println("Client: retrieved registry");
 		    // retrieve the stub of the remote object by its name
 		    Sorter sorter = (Sorter) registry.lookup(SERVICE_NAME);
-		    System.out.println("Client: retrieved Sorter stub");
+		    System.out.println("Client: retrieved Sorter stub " + sorter.toString());
 		    // call the remote object to perform sort
 		    List<String> list = Arrays.asList("3", "5", "1", "2", "4");
 		    System.out.println("Client: sending " + list);

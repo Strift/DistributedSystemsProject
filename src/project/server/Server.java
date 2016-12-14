@@ -19,9 +19,11 @@ public class Server {
 	public static void main(String[] args) throws Exception {
 		Server server1 = new Server();
 		Server server2 = new Server();
+		Server server3 = new Server();
 		try {
 			server1.start();
 			server2.start();
+			server3.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,7 +51,7 @@ public class Server {
 		
 		// register the remote object's stub in the registry
 		Registry registry = LocateGlobalRegistry.getRegistry();
-		registry.rebind(this.name + "." + SERVICE_NAME, stub);
+		registry.rebind(/*this.name + "." + */SERVICE_NAME, stub);
 		System.out.println(this.name + ": registered remote object's stub");
 		
 		// main terminates here, but the JVM still runs because of the skeleton
