@@ -3,7 +3,7 @@ package project.server;
 import java.util.Collections;
 import java.util.List;
 
-public class SimpleSorter implements project.remote.Sorter {
+public class SimpleSorter implements project.services.Sorter {
 	
 	private static int instances = 0;
 	

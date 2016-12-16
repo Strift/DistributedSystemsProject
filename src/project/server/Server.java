@@ -8,7 +8,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 import project.LocateGlobalRegistry;
-import project.remote.Sorter;
+import project.services.Sorter;
 
 public class Server {
 
@@ -41,18 +41,18 @@ public class Server {
 		System.out.println(this.name + ": running on host " + InetAddress.getLocalHost());
 		System.out.println(this.name + ": hostname property " + System.getProperty("java.rmi.server.hostname"));
 		
-		// instanciate the remote object
+		// instanciate the services object
 		Sorter sorter = new SimpleSorter();
 		System.out.println(this.name + ": instanciated SimpleSorter");
 		
-		// create a skeleton and a stub for that remote object
+		// create a skeleton and a stub for that services object
 		Sorter stub = (Sorter) UnicastRemoteObject.exportObject(sorter, 0);
 		System.out.println(this.name + ": generated skeleton and stub");
 		
-		// register the remote object's stub in the registry
+		// register the services object's stub in the registry
 		Registry registry = LocateGlobalRegistry.getRegistry();
 		registry.rebind(/*this.name + "." + */SERVICE_NAME, stub);
-		System.out.println(this.name + ": registered remote object's stub");
+		System.out.println(this.name + ": registered services object's stub");
 		
 		// main terminates here, but the JVM still runs because of the skeleton
 		System.out.println(this.name + ": ready");
