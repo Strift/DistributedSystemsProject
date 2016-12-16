@@ -24,6 +24,10 @@ public class GlobalRegistry implements java.rmi.registry.Registry {
 	    System.out.println("Registry: exiting (should not happen)");
 	}
 
+	public GlobalRegistry(RemoteHandler handler) {
+		this.remoteHandler = handler;
+	}
+
 	public GlobalRegistry() {
 		this.remoteHandler = new RoundRobinRemoteHandler();
 	}
