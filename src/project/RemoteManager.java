@@ -5,7 +5,7 @@ import java.rmi.*;
 /**
  * Created by strift on 12/16/16.
  */
-public interface RemoteHandler {
+public interface RemoteManager {
 
     public void addRemote(String name, Remote remote, Boolean force) throws RemoteException, AlreadyBoundException, AccessException;
 

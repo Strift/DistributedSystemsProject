@@ -12,7 +12,7 @@ public class GlobalRegistry implements java.rmi.registry.Registry {
 	// default listening port for the registry
 	private static final int REGISTRY_PORT = 1099;
 
-	private RemoteHandler remoteHandler;
+	private RemoteManager remoteManager;
 	
 	public static synchronized void main(String[] args) throws Exception {
 	    System.out.println("Registry: running on host " + InetAddress.getLocalHost());
@@ -24,22 +24,22 @@ public class GlobalRegistry implements java.rmi.registry.Registry {
 	    System.out.println("Registry: exiting (should not happen)");
 	}
 
-	public GlobalRegistry(RemoteHandler handler) {
-		this.remoteHandler = handler;
+	public GlobalRegistry(RemoteManager handler) {
+		this.remoteManager = handler;
 	}
 
 	public GlobalRegistry() {
-		this.remoteHandler = new RoundRobinRemoteHandler();
+		this.remoteManager = new RoundRobinRemoteManager();
 	}
 	
 	@Override
 	public Remote lookup(String name) throws RemoteException, NotBoundException, AccessException {
-		return this.remoteHandler.getRemote(name);
+		return this.remoteManager.getRemote(name);
 	}
 	
 	@Override
 	public void bind(String name, Remote obj) throws RemoteException, AlreadyBoundException, AccessException {
-		this.remoteHandler.addRemote(name, obj, false);
+		this.remoteManager.addRemote(name, obj, false);
 	}
 
 	@Override
@@ -49,12 +49,12 @@ public class GlobalRegistry implements java.rmi.registry.Registry {
 
 	@Override
 	public void rebind(String name, Remote obj) throws RemoteException, AccessException {
-		this.remoteHandler.addRemote(name, obj);
+		this.remoteManager.addRemote(name, obj);
 	}
 	
 	@Override
 	public String[] list() throws RemoteException, AccessException {
-		return this.remoteHandler.getRemotesList();
+		return this.remoteManager.getRemotesList();
 	}
 
 }

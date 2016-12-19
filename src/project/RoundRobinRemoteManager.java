@@ -7,7 +7,7 @@ import java.util.LinkedList;
 /**
  * Created by strift on 12/16/16.
  */
-public class RoundRobinRemoteHandler implements RemoteHandler {
+public class RoundRobinRemoteManager implements RemoteManager {
 
     private HashMap<String, LinkedList<Remote>> remotes = new HashMap<>();
 
